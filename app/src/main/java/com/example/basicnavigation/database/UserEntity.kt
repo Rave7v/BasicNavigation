@@ -10,5 +10,5 @@ data class UserEntity(
 )
 
 fun UserEntity.toUser() = User (
-    username, id.toString()
+    id, username
 )
