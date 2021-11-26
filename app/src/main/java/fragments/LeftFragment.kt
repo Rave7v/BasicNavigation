@@ -21,8 +21,9 @@ class LeftFragment : Fragment() {
         binding.btnSendName.setOnClickListener {
             val destination = LeftFragmentDirections.actionLeftFragmentToDestinationFragment(binding.etName.text.toString())
             NavHostFragment.findNavController(this).navigate(destination)
+            leftViewModel.save(User(binding.etIdUsuario.text.toString().toInt(),binding.etName.text.toString()))
         }
-        leftViewModel.save(User(8,"user7"))
+
 
         return binding.root
     }

@@ -28,31 +28,26 @@ class destinationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val receivedUsername = arguments?.getString("username_arg")
+        binding.tvReceivedArg.setText(receivedUsername)
+        binding.rvUserEntries.layoutManager = LinearLayoutManager(view?.context)
+
         destinationViewModel.getUsers()
 
         destinationViewModel.savedUsers.observe(viewLifecycleOwner,{ usersList->
             if (!usersList.isNullOrEmpty()){
+                val adapter = destinationAdapter(usersList)
+                binding.rvUserEntries.adapter = adapter
+
                 for (saveduser in usersList){
                     Log.d("obtainedusers","from fragment user: ${saveduser.username}")
                 }
             }else{
                 Log.d("obtainedusers","from fragment is null or empty")
             }
-
         })
 
-        val receivedUsername = arguments?.getString("username_arg")
-        binding.tvReceivedArg.setText(receivedUsername)
-        binding.rvUserEntries.layoutManager = LinearLayoutManager(view?.context)
-        val adapter = destinationAdapter(generateData())
-        binding.rvUserEntries.adapter = adapter
-    }
 
-    fun generateData():List<User>{
-        var users = mutableListOf<User>()
-        for (x in 1..10){
-            users.add(User(x,"user${x}"))
-        }
-        return users
     }
 }
