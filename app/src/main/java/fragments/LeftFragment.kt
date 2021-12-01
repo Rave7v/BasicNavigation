@@ -24,7 +24,6 @@ class LeftFragment : Fragment() {
             leftViewModel.save(User(binding.etIdUsuario.text.toString().toInt(),binding.etName.text.toString()))
         }
 
-
         return binding.root
     }
 }
