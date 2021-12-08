@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.RequestQueue
 import com.example.basicnavigation.databinding.FragmentDestinationBinding
 
 class destinationFragment : Fragment() {
     private lateinit var binding: FragmentDestinationBinding
+
     private val destinationViewModel: DestinationViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
