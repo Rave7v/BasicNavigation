@@ -34,4 +34,9 @@
             app:argType="string"
             android:defaultValue="empty" />
     </fragment>
+    <fragment
+        android:id="@+id/ran_fragment2"
+        android:name="fragments.ran_fragment"
+        android:label="fragment_ran_fragment"
+        tools:layout="@layout/fragment_ran_fragment" />
 </navigation>

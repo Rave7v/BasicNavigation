@@ -4,18 +4,23 @@
     <item
     android:id="@+id/leftFragment"
     android:title="left"
-    android:icon="@drawable/ic_left"
+    android:icon="@drawable/perfil"
     />
 
     <item
         android:id="@+id/homeFragment"
         android:title="home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/pokeball"
         />
 
     <item
         android:id="@+id/rightFragment"
         android:title="right"
-        android:icon="@drawable/ic_right"
+        android:icon="@drawable/poke"
+        />
+    <item
+        android:id="@+id/ran_fragment2"
+        android:title="right"
+        android:icon="@drawable/randomp"
         />
 </menu>
