@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.RequestQueue
 import com.example.basicnavigation.databinding.FragmentDestinationBinding
 
 class destinationFragment : Fragment() {
@@ -34,7 +33,7 @@ class destinationFragment : Fragment() {
                 val adapter = destinationAdapter(usersList)
                 binding.rvUserEntries.adapter = adapter
                 for (saveduser in usersList){
-                    Log.d("obtainedusers","from fragment user: ${saveduser.username}")
+                    Log.d("obtainedusers","from fragment user: ${saveduser.name}")
                 }
             }else{
                 Log.d("obtainedusers","from fragment is null or empty")

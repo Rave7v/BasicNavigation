@@ -9,9 +9,6 @@ class MyAppDataSource(private val userDao: UserDao) {
     suspend fun getUsers():LiveData<List<User>> = withContext(Dispatchers.IO){
         return@withContext MutableLiveData(userDao.getUsersFromDatabase().map { it.toUser() })
     }
-    suspend fun getSingleUser(query: String): LiveData<User> = withContext(Dispatchers.IO){
-        return@withContext MutableLiveData(userDao.getUserByUsername(query).toUser())
-    }
 
     suspend fun delete(user: User)= withContext(Dispatchers.IO){
         userDao.delete(user.toEntity())

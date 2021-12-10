@@ -10,9 +10,7 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(user: UserEntity)
 
-    @Query("SELECT * FROM $TABLE_USERS")
+    @Query("SELECT * FROM $TABLE_USER")
     fun getUsersFromDatabase(): List<UserEntity>
 
-    @Query("SELECT * FROM $TABLE_USERS WHERE username = :query")
-    fun getUserByUsername(query: String): UserEntity
 }

@@ -1,6 +1,5 @@
 package fragments
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,6 +14,12 @@ class DestinationViewModel: ViewModel() {
         viewModelScope.launch {
             val userDao = DatabaseManager.instance.database.userDao()
             savedUsers.value = MyAppDataSource(userDao).getUsers().value
+        }
+    }
+    fun save(user: User){
+        viewModelScope.launch {
+            val userDao = DatabaseManager.instance.database.userDao()
+            MyAppDataSource(userDao).save(user)
         }
     }
 }

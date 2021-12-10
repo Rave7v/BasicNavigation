@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.basicnavigation.database.User
 import com.example.basicnavigation.databinding.FragmentRightBinding
 import org.json.JSONObject
 
@@ -31,28 +34,48 @@ class RightFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val etPokemonName = binding.etPokemonToSearchFor
+        val destinationViewModel: DestinationViewModel by viewModels()
         queue = Volley.newRequestQueue(context)
         binding.btnSearch.setOnClickListener(){
             getPokemon(etPokemonName.text.toString())
             etPokemonName.text.clear()
         }
+
+        binding.guadamesta.setOnClickListener {
+            val destination = RightFragmentDirections.actionRightFragmentToDestinationFragment()
+            NavHostFragment.findNavController(this).navigate(destination)
+            destinationViewModel.save(
+                User(
+                    binding.idpoke.text.toString().toInt(),
+                    binding.tvName.toString(),
+                    binding.tvTipo.toString(),
+                    binding.tvHp.toString(),
+                    binding.tvAttack.toString(),
+                    binding.tvSpecial.toString(),
+                    binding.tvDeffense.toString(),
+                    binding.tvDs.toString(),
+                    binding.tvSpeed.toString(),
+                    binding.tvWeight.toString()
+                )
+            )
+        }
     }
 
-    @SuppressLint("SetTextI18n")
     fun getPokemon(pokemonName: String){
         val url ="https://pokeapi.co/api/v2/pokemon/${pokemonName}"
         val jsonRequest = JsonObjectRequest(url, { response->
-                val name = response.getString("name")
-                val id = response.getString("id")
-                // hp,ataque,defesa,velocidad, peso, tipo
-                val tipo = response.getJSONArray("types").getJSONObject(0).getJSONObject("type").getString("name")
-                val  hp  = response.getJSONArray("stats").getJSONObject(0).getString("base_stat")
-                val attack  = response.getJSONArray("stats").getJSONObject(1).getString("base_stat")
-                val deffense  = response.getJSONArray("stats").getJSONObject(2).getString("base_stat")
-                val speed  = response.getJSONArray("stats").getJSONObject(5).getString("base_stat")
-                val weight = response.getString("weight")
-                val infoString = "Nombre: ${name.replaceFirstChar { it.uppercase() }} #: $id \nTipo: $tipo \nPuntos de Salud: $hp \nAtaque: $attack \nDefensa: $deffense  \nVelocidad: $speed \nPeso: $weight"
-                binding.tvPokemonInfo.setText(infoString)
+            binding.idpoke.setText(response.getString("id"))
+            binding.tvName.setText(response.getString("name"))
+            binding.tvTipo.setText(response.getJSONArray("types").getJSONObject(0).getJSONObject("type").getString("name"))
+            binding.tvHp.setText(response.getJSONArray("stats").getJSONObject(0).getString("base_stat"))
+            binding.tvAttack.setText(response.getJSONArray("stats").getJSONObject(1).getString("base_stat"))
+            binding.tvSpecial.setText(response.getJSONArray("stats").getJSONObject(3).getString("base_stat"))
+            binding.tvDeffense.setText(response.getJSONArray("stats").getJSONObject(2).getString("base_stat"))
+            binding.tvDs.setText(response.getJSONArray("stats").getJSONObject(4).getString("base_stat"))
+            binding.tvSpeed.setText(response.getJSONArray("stats").getJSONObject(5).getString("base_stat"))
+            binding.tvWeight.setText(response.getString("weight"))
+            //val infoString = "Nombre: ${name.replaceFirstChar { it.uppercase() }} #: $id \nTipo: $tipo \nPuntos de Salud: $hp \nAtaque: $attack\nAtaque especial: $special \nDefensa: $deffense \nDefensa especial:  $deffense_special \nVelocidad: $speed \nPeso: $weight"
+             //   binding.tvPokemonInfo.setText(infoString)
             },
             { errorMessage->
                 binding.tvPokemonInfo.setText("404 Pokemon Not found")

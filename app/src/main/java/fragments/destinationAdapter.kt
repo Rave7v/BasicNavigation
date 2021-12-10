@@ -10,9 +10,16 @@ class destinationAdapter (private val users: List<User>): RecyclerView.Adapter<d
 
     class DestinationHolder(val binding: ItemUserBinding):RecyclerView.ViewHolder (binding.root){
         fun render(user: User) {
-            binding.tvUserName.setText(user.username)
-            binding.tvUserNumber.setText(user.id.toString())
-
+            binding.id.setText(user.id.toString())
+            binding.name.setText(user.name)
+            binding.tipo.setText(user.tipo)
+            binding.hp.setText(user.hp)
+            binding.attack.setText(user.attack)
+            binding.special.setText(user.special)
+            binding.deffense.setText(user.defense)
+            binding.ds.setText(user.defense_special)
+            binding.speed.setText(user.speed)
+            binding.weight.setText(user.weight)
         }
     }
 

@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 
 const val DATABASE_VERSION = 1
-const val TABLE_USERS = "users"
+const val TABLE_USER = "user"
 const val DATABASE_NAME = "myappname.sqlite"
 
 @Database(
