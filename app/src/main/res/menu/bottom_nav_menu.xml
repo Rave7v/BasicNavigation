@@ -18,9 +18,5 @@
         android:title="Pokedex"
         android:icon="@drawable/poke"
         />
-    <item
-        android:id="@+id/ran_fragment2"
-        android:title="Descbrimiento"
-        android:icon="@drawable/randomp"
-        />
+
 </menu>
