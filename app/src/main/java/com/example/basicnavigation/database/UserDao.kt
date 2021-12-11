@@ -7,7 +7,7 @@ interface UserDao {
     @Delete
     fun delete(user: UserEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun save(user: UserEntity)
 
     @Query("SELECT * FROM $TABLE_USER")

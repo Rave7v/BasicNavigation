@@ -3,7 +3,7 @@ package com.example.basicnavigation.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
-const val DATABASE_VERSION = 1
+const val DATABASE_VERSION = 2
 const val TABLE_USER = "user"
 const val DATABASE_NAME = "myappname.sqlite"
 

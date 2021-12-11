@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.basicnavigation.database.DatabaseManager
 import com.example.basicnavigation.database.MyAppDataSource
 import com.example.basicnavigation.database.User
+import com.example.basicnavigation.database.UserDao
 import kotlinx.coroutines.launch
 
 class DestinationViewModel: ViewModel() {
@@ -20,6 +21,13 @@ class DestinationViewModel: ViewModel() {
         viewModelScope.launch {
             val userDao = DatabaseManager.instance.database.userDao()
             MyAppDataSource(userDao).save(user)
+        }
+    }
+    fun delete(user: User){
+        viewModelScope.launch {
+            val userDao = DatabaseManager.instance.database.userDao()
+            MyAppDataSource(userDao).delete(user)
+            getUsers()
         }
     }
 }

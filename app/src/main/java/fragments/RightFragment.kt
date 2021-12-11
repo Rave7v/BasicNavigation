@@ -1,6 +1,5 @@
 package fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,12 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.android.volley.RequestQueue
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.basicnavigation.database.User
 import com.example.basicnavigation.databinding.FragmentRightBinding
-import org.json.JSONObject
 
 
 class RightFragment : Fragment() {
@@ -26,7 +23,6 @@ class RightFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding= FragmentRightBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -47,15 +43,15 @@ class RightFragment : Fragment() {
             destinationViewModel.save(
                 User(
                     binding.idpoke.text.toString().toInt(),
-                    binding.tvName.toString(),
-                    binding.tvTipo.toString(),
-                    binding.tvHp.toString(),
-                    binding.tvAttack.toString(),
-                    binding.tvSpecial.toString(),
-                    binding.tvDeffense.toString(),
-                    binding.tvDs.toString(),
-                    binding.tvSpeed.toString(),
-                    binding.tvWeight.toString()
+                    binding.tvName.text.toString(),
+                    binding.tvTipo.text.toString(),
+                    binding.tvHp.text.toString(),
+                    binding.tvAttack.text.toString(),
+                    binding.tvSpecial.text.toString(),
+                    binding.tvDeffense.text.toString(),
+                    binding.tvDs.text.toString(),
+                    binding.tvSpeed.text.toString(),
+                    binding.tvWeight.text.toString()
                 )
             )
         }

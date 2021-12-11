@@ -21,10 +21,8 @@ class LeftFragment : Fragment() {
         binding = FragmentLeftBinding.inflate(inflater,container,false)
         val myDB= FirebaseDatabase.getInstance()
         database = myDB.reference
-
         database.child("usuarios").child("001").get().addOnSuccessListener { record->
             val json= JSONObject(record.value.toString())
-            Log.d("sds","${record.value}")
             binding.nombre.setText(json.getString("nombre").toString())
             binding.nickname.setText(json.getString("nickname").toString())
             binding.nivel.setText(json.getString("nivel").toString())

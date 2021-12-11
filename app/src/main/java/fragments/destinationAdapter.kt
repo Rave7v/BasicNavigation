@@ -6,9 +6,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.basicnavigation.databinding.ItemUserBinding
 import com.example.basicnavigation.database.User
 
-class destinationAdapter (private val users: List<User>): RecyclerView.Adapter<destinationAdapter.DestinationHolder>() {
+class destinationAdapter (private val users: List<User>,private val callBack: UserListCallback): RecyclerView.Adapter<destinationAdapter.DestinationHolder>() {
 
-    class DestinationHolder(val binding: ItemUserBinding):RecyclerView.ViewHolder (binding.root){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DestinationHolder {
+        val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return DestinationHolder(binding,callBack)
+    }
+
+    override fun onBindViewHolder(holder: DestinationHolder, position: Int) {
+        holder.render(users[position])
+    }
+    override fun getItemCount(): Int = users.size
+
+    class DestinationHolder(val binding: ItemUserBinding,val callBack: UserListCallback):RecyclerView.ViewHolder (binding.root){
         fun render(user: User) {
             binding.id.setText(user.id.toString())
             binding.name.setText(user.name)
@@ -20,16 +30,11 @@ class destinationAdapter (private val users: List<User>): RecyclerView.Adapter<d
             binding.ds.setText(user.defense_special)
             binding.speed.setText(user.speed)
             binding.weight.setText(user.weight)
+            /////callback
+            binding.delete.setOnClickListener {
+                callBack.onClick(user)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DestinationHolder {
-       val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return DestinationHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: DestinationHolder, position: Int) {
-        holder.render(users[position])
-    }
-    override fun getItemCount(): Int = users.size
 }

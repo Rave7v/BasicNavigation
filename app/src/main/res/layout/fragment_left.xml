@@ -97,11 +97,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_margin="25dp"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         tools:layout_editor_absoluteX="149dp"
-        tools:src="@tools:sample/avatars"
+        tools:src="@drawable/images"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         />
